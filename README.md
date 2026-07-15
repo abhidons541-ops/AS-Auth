@@ -1,11 +1,11 @@
-# KeyAuth Source Code -> Please star :star2:
+# As-Auth Source Code -> Please star :star2:
 
 > [!WARNING]  
 > AS OF JANUARY 29th, 2024 - THIS REPOSITORY IS NO LONGER BEING UPDATED!
 
-[KeyAuth](https://keyauth.win) is an open source authentication system with [cloud-hosted subscriptions](https://keyauth.win/app/?page=upgrade) available as well.
+[As-Auth](https://keyauth.win) is an open source authentication system with [cloud-hosted subscriptions](https://keyauth.win/app/?page=upgrade) available as well.
 <br>
-*You're not allowed to sell KeyAuth. source made avaliable only for you to use*
+*You're not allowed to sell As-Auth. source made avaliable only for you to use*
 
 To submit a suggestion or a bug, please go to https://keyauth.cc/app/?page=forms and submit a form!
 
@@ -19,11 +19,11 @@ To submit a suggestion or a bug, please go to https://keyauth.cc/app/?page=forms
 
 If the default example that isn't added to your software isn't functioning how it should, please go to https://keyauth.cc/app/?page=forms and submit a bug report in the `Report a Bug` modal.
 
-However, we do **NOT** provide support for adding KeyAuth to your project. If you can't figure this out you should use Google or YouTube to learn more about the programming language you want to sell a program in.
+However, we do **NOT** provide support for adding As-Auth to your project. If you can't figure this out you should use Google or YouTube to learn more about the programming language you want to se[...]
 
 ## Copyright License
 
-KeyAuth is licensed under **Elastic License 2.0**
+As-Auth is licensed under **Elastic License 2.0**
 
 * You may not provide the software to third parties as a hosted or managed
 service, where the service provides users with access to any substantial set of
@@ -37,7 +37,7 @@ software that is protected by the license key.
 of the licensor in the software. Any use of the licensor’s trademarks is subject
 to applicable law.
 
-Thank you for your compliance, we work hard on the development of KeyAuth and do not appreciate our copyright being infringed.
+Thank you for your compliance, we work hard on the development of As-Auth and do not appreciate our copyright being infringed.
 
 ## Requirements ##
 
@@ -46,7 +46,7 @@ Thank you for your compliance, we work hard on the development of KeyAuth and do
 - Redis
 - PHP
 
-No setup support given to non-enterprise users. However for $79.99 you can purchase access to the source code of paid features (developer and seller plan features), setup support 1-on-1 with the owner of KeyAuth, and a tutorial video on how to host KeyAuth for 100% free forever (good preformance & secure also) 
+No setup support given to non-enterprise users. However for $79.99 you can purchase access to the source code of paid features (developer and seller plan features), setup support 1-on-1 with the o[...]
 
 Purchase enterprise today --> https://keyauth.win/app/?page=upgrade
 
@@ -54,4 +54,4 @@ Purchase enterprise today --> https://keyauth.win/app/?page=upgrade
 
 https://keyauth.canny.io/changelog
 
-Looking for a Discord bot made by the KeyAuth & RestoreCord founder that you can use to backup your Discord members, server settings, and messages? Go to https://vaultcord.com
+Looking for a Discord bot made by the As-Auth & RestoreCord founder that you can use to backup your Discord members, server settings, and messages? Go to https://vaultcord.com

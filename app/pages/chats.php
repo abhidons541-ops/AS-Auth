@@ -168,7 +168,7 @@ if (isset($_POST['addchannel'])) {
             <?php require '../app/layout/breadcrumb.php'; ?>
             <h1 class="text-xl font-semibold text-white-900 sm:text-2xl">Chats</h1>
             <p class="text-xs text-gray-500">Allow your users to chat with each other. <a
-                    href="https://keyauth.readme.io/reference/chats-1" target="_blank"
+                    href="https://asauth.readme.io/reference/chats-1" target="_blank"
                     class="text-blue-600 hover:underline">Learn More</a>.
             </p>
             <br>

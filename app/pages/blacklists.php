@@ -55,7 +55,7 @@ if (isset($_POST['addwhite'])) {
             <?php require '../app/layout/breadcrumb.php'; ?>
             <h1 class="text-xl font-semibold text-white-900 sm:text-2xl">Blacklists</h1>
             <p class="text-xs text-gray-500">Block or accept access from certain IPs/HWIDs <a
-                    href="https://keyauth.readme.io/reference/blacklists-1" target="_blank"
+                    href="https://asauth.readme.io/reference/blacklists-1" target="_blank"
                     class="text-blue-600 hover:underline">Learn More</a>.</p>
             <br>
             <div class="p-4 flex flex-col">

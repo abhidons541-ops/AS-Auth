@@ -472,7 +472,7 @@ function send($username, $email, $content, $subject) {
 
         $m = new \SimpleEmailServiceMessage();
         $m->addTo("{$username} <{$email}>");
-        $m->setFrom('KeyAuth <noreply@keyauth.cc>');
+        $m->setFrom('AsAuth <noreply@keyauth.cc>');
         $m->setSubject("{$subject}");
         $m->setMessageFromString($content, $content);
         

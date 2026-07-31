@@ -29,16 +29,16 @@ if(strlen(($_POST['ownerid'] ?? $_GET['ownerid'])) != 10) {
     die(json_encode(array("success" => false, "message" => "OwnerID should be 10 characters long. Select app & copy code snippet from https://keyauth.cc/app/")));
 }
 
-if (misc\cache\rateLimit("KeyAuthAppLimit:" . ($_POST['ownerid'] ?? $_GET['ownerid']), 1, 60, 200)) {
+if (misc\cache\rateLimit("AsAuthAppLimit:" . ($_POST['ownerid'] ?? $_GET['ownerid']), 1, 60, 200)) {
     die(json_encode(array("success" => false, "message" => "This application has sent too many requests. Try again in a minute.")));
 }
 
 $ownerid = misc\etc\sanitize($_POST['ownerid'] ?? $_GET['ownerid']); // ownerid of account that owns application
 $name = misc\etc\sanitize($_POST['name'] ?? $_GET['name']); // application name
-$row = misc\cache\fetch('KeyAuthApp:' . $name . ':' . $ownerid, "SELECT * FROM `apps` WHERE `ownerid` = ? AND `name` = ?", [$ownerid, $name], 0);
+$row = misc\cache\fetch('AsAuthApp:' . $name . ':' . $ownerid, "SELECT * FROM `apps` WHERE `ownerid` = ? AND `name` = ?", [$ownerid, $name], 0);
 
 if ($row == "not_found") {
-    die("KeyAuth_Invalid");
+    die("AsAuth_Invalid");
 }
 
 // app settings
@@ -103,7 +103,7 @@ if($ownerid == "hTmfnZOYPe") {
 if ($banned) {
     die(json_encode(array(
         "success" => false,
-        "message" => "This application has been banned from KeyAuth.cc for violating terms." // yes we self promote to customers of those who break ToS. Should've followed terms :shrug:
+        "message" => "This application has been banned from keyauth.cc for violating terms." // yes we self promote to customers of those who break ToS. Should've followed terms :shrug:
     )));
 }
 
@@ -137,7 +137,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
         $ip = api\shared\primary\getIp();
         if ($vpnblock) {
             if (api\shared\primary\vpnCheck($ip)) {
-                $row = misc\cache\fetch('KeyAuthWhitelist:' . $secret . ':' . $ip, "SELECT 1 FROM `whitelist` WHERE `ip` = ? AND `app` = ?", [$ip, $secret], 0);
+                $row = misc\cache\fetch('AsAuthWhitelist:' . $secret . ':' . $ip, "SELECT 1 FROM `whitelist` WHERE `ip` = ? AND `app` = ?", [$ip, $secret], 0);
                 if ($row == "not_found") {
                     $response = json_encode(array(
                         "success" => false,
@@ -188,7 +188,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
                 ));
 
                 $sig = hash_hmac('sha256', $response, $secret);
-                header("signature: {$sig}"); 
+                header("signature: {$sig}");
 
                 die($response);
             }
@@ -200,7 +200,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
                 ));
 
                 $sig = hash_hmac('sha256', $response, $secret);
-                header("signature: {$sig}"); 
+                header("signature: {$sig}");
 
                 die($response);
             }
@@ -209,14 +209,14 @@ switch ($_POST['type'] ?? $_GET['type']) {
 
             switch ($verification) {
                 case str_contains($verification, 'token_blacklisted'):
-                    $reason = str_ireplace("token_blacklisted, ", "", $verification);       
+                    $reason = str_ireplace("token_blacklisted, ", "", $verification);
                     $response = json_encode(array(
                         "success" => false,
                         "message" => "The Token Has Been Blacklisted For The Following Reason: " . $reason . " Contact Application Developer If This Is A Mistake"
                     ));
 
                     $sig = hash_hmac('sha256', $response, $secret);
-                    header("signature: {$sig}"); 
+                    header("signature: {$sig}");
 
                     die($response);
                 case 'invalid_token':
@@ -227,8 +227,8 @@ switch ($_POST['type'] ?? $_GET['type']) {
                     ));
 
                     $sig = hash_hmac('sha256', $response, $secret);
-                    header("signature: {$sig}"); 
-                
+                    header("signature: {$sig}");
+
                     die($response);
 
                 case 'hash_mismatch':
@@ -239,13 +239,13 @@ switch ($_POST['type'] ?? $_GET['type']) {
                     ));
 
                     $sig = hash_hmac('sha256', $response, $secret);
-                    header("signature: {$sig}"); 
-                
+                    header("signature: {$sig}");
+
                     die($response);
-                
+
                 case 'success':
                     break;
-                
+
                 default:
 
                     $response = json_encode(array(
@@ -254,8 +254,8 @@ switch ($_POST['type'] ?? $_GET['type']) {
                     ));
 
                     $sig = hash_hmac('sha256', $response, $secret);
-                    header("signature: {$sig}"); 
-                
+                    header("signature: {$sig}");
+
                     die($response);
 
             }
@@ -284,7 +284,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
             if (strpos($serverhash, $hash) === false) {
                 if (is_null($serverhash)) {
                     misc\mysql\query("UPDATE `apps` SET `hash` = ? WHERE `secret` = ?", [$hash, $secret]);
-                    misc\cache\purge('KeyAuthApp:' . $name . ':' . $ownerid); // flush cache for application so new hash takes precedent
+                    misc\cache\purge('AsAuthApp:' . $name . ':' . $ownerid); // flush cache for application so new hash takes precedent
                 } else {
                     $response = json_encode(array(
                         "success" => false,
@@ -301,11 +301,11 @@ switch ($_POST['type'] ?? $_GET['type']) {
 
         $enckey = !is_null($_POST['enckey'] ?? $_GET['enckey']) ? misc\etc\sanitize($_POST['enckey'] ?? $_GET['enckey']) . "-" . $secret : NULL;
         $newSession = false;
-        $duplicateSession = misc\cache\select("KeyAuthSessionDupe:$secret:$ip");
+        $duplicateSession = misc\cache\select("AsAuthSessionDupe:$secret:$ip");
         if($duplicateSession) {
             $sessionid = $duplicateSession;
 
-            $updateSession = misc\cache\update('KeyAuthState:'.$secret.':'.$sessionid.'', array("validated" => 0, "enckey" => $enckey));
+            $updateSession = misc\cache\update('AsAuthState:'.$secret.':'.$sessionid.'', array("validated" => 0, "enckey" => $enckey));
             if(!$updateSession) {
                 $sessionid = misc\etc\generateRandomString();
                 $newSession = true;
@@ -316,7 +316,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
             $newSession = true;
         }
 
-        // $row = misc\cache\fetch('KeyAuthAppStats:' . $secret, "SELECT (SELECT COUNT(1) FROM `users` WHERE `app` = ?) AS 'numUsers', (SELECT COUNT(1) FROM `sessions` WHERE `app` = ? AND `validated` = 1 AND `expiry` > ?) AS 'numOnlineUsers', (SELECT COUNT(1) FROM `keys` WHERE `app` = ?) AS 'numKeys' FROM dual", [$secret, $secret, time(), $secret], 0, 3600);
+        // $row = misc\cache\fetch('AsAuthAppStats:' . $secret, "SELECT (SELECT COUNT(1) FROM `users` WHERE `app` = ?) AS 'numUsers', (SELECT COUNT(1) FROM `sessions` WHERE `app` = ? AND `validated` = 1 AND `expiry` > ?) AS 'numOnlineUsers', (SELECT COUNT(1) FROM `keys` WHERE `app` = ?) AS 'numKeys' FROM dual", [$secret, $secret, time(), $secret], 0, 3600);
 
         $numUsers = "N/A - Use fetchStats() function in latest example";
         $numOnlineUsers = "N/A - Use fetchStats() function in latest example";
@@ -345,10 +345,10 @@ switch ($_POST['type'] ?? $_GET['type']) {
         fastcgi_finish_request();
 
         if($newSession) {
-            misc\cache\insert("KeyAuthState:$secret:$sessionid", serialize(array("credential" => NULL, "enckey" => $enckey, "validated" => 0)), $sessionexpiry);
+            misc\cache\insert("AsAuthState:$secret:$sessionid", serialize(array("credential" => NULL, "enckey" => $enckey, "validated" => 0)), $sessionexpiry);
             $time = time() + $sessionexpiry;
             misc\mysql\query("INSERT INTO `sessions` (`id`, `app`, `expiry`, `created_at`, `enckey`, `ip`) VALUES (?, ?, ?, ?, NULLIF(?, ''), ?)", [$sessionid, $secret, $time, time(), $enckey, $ip]);
-            misc\cache\insert("KeyAuthSessionDupe:$secret:$ip", $sessionid, $sessionexpiry);
+            misc\cache\insert("AsAuthSessionDupe:$secret:$ip", $sessionid, $sessionexpiry);
         }
 
     case 'register':
@@ -473,7 +473,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
         fastcgi_finish_request();
 
         if ($registerSuccess) {
-            misc\cache\update('KeyAuthState:'.$secret.':'.$sessionid.'', array("validated" => 1, "credential" => $username));
+            misc\cache\update('AsAuthState:'.$secret.':'.$sessionid.'', array("validated" => 1, "credential" => $username));
             misc\mysql\query("UPDATE `sessions` SET `credential` = ?,`validated` = 1 WHERE `id` = ?", [$username, $sessionid]);
         }
         die();
@@ -574,8 +574,8 @@ switch ($_POST['type'] ?? $_GET['type']) {
                 case 'success':
                     // set key to used, and set usedby
                     misc\mysql\query("UPDATE `keys` SET `status` = 'Used', `usedon` = ?, `usedby` = ? WHERE `key` = ? AND `app` = ?", [time(), $username, $checkkey, $secret]);
-                    misc\cache\purge('KeyAuthKeys:' . $secret . ':' . $checkkey);
-                    misc\cache\purge('KeyAuthSubs:' . $secret . ':' . $username);
+                    misc\cache\purge('AsAuthKeys:' . $secret . ':' . $checkkey);
+                    misc\cache\purge('AsAuthSubs:' . $secret . ':' . $username);
                     $response = json_encode(array(
                         "success" => true,
                         "message" => "Upgraded successfully",
@@ -688,7 +688,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
                 break;
             default:
                 misc\mysql\query("UPDATE `sessions` SET `validated` = 1,`credential` = ? WHERE `id` = ?", [$username, $sessionid]);
-                misc\cache\update('KeyAuthState:'.$secret.':'.$sessionid.'', array("validated" => 1, "credential" => $username));
+                misc\cache\update('AsAuthState:'.$secret.':'.$sessionid.'', array("validated" => 1, "credential" => $username));
 
                 $ip = api\shared\primary\getIp();
                 $response = json_encode(array(
@@ -798,7 +798,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
                 break;
             default:
                 misc\mysql\query("UPDATE `sessions` SET `validated` = 1,`credential` = ? WHERE `id` = ?", [$checkkey, $sessionid]);
-                misc\cache\update('KeyAuthState:'.$secret.':'.$sessionid.'', array("validated" => 1, "credential" => $checkkey));
+                misc\cache\update('AsAuthState:'.$secret.':'.$sessionid.'', array("validated" => 1, "credential" => $checkkey));
 
                 $ip = api\shared\primary\getIp();
                 $response = json_encode(array(
@@ -875,7 +875,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
                 break;
             default:
                 misc\mysql\query("UPDATE `sessions` SET `validated` = 1,`credential` = ? WHERE `id` = ?", [$checkkey, $sessionid]);
-                misc\cache\update('KeyAuthState:'.$secret.':'.$sessionid.'', array("validated" => 1, "credential" => $checkkey));
+                misc\cache\update('AsAuthState:'.$secret.':'.$sessionid.'', array("validated" => 1, "credential" => $checkkey));
                 $response = json_encode(array(
                     "success" => true,
                     "message" => "$loggedInMsg",
@@ -895,7 +895,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
         $un = misc\etc\sanitize($_POST['username'] ?? $_GET['username']);
         $email = strtolower(misc\etc\sanitize($_POST['email'] ?? $_GET['email']));
 
-        $row = misc\cache\fetch('KeyAuthUser:' . $secret . ':' . $un, "SELECT * FROM `users` WHERE `username` = ? AND `app` = ?", [$un, $secret], 0);
+        $row = misc\cache\fetch('AsAuthUser:' . $secret . ':' . $un, "SELECT * FROM `users` WHERE `username` = ? AND `app` = ?", [$un, $secret], 0);
         if ($row == "not_found") {
             $response = json_encode(array(
                 "success" => false,
@@ -954,9 +954,9 @@ switch ($_POST['type'] ?? $_GET['type']) {
                   </tr>
                 </table>
                 <p>Thanks,
-                  <br>The KeyAuth team</p>
+                  <br>The AsAuth team</p>
             </div>';
-            misc\email\send($un, $email, $body, "KeyAuth - Password Reset for {$name}");
+            misc\email\send($un, $email, $body, "AsAuth - Password Reset for {$name}");
             $response = json_encode(array(
                 "success" => true,
                 "message" => "Successfully sent email to change password.",
@@ -973,7 +973,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
         $session = api\shared\primary\getSession($sessionid, $secret);
         $enckey = $session["enckey"];
 
-        $rows = misc\cache\fetch('KeyAuthOnlineUsers:' . $secret, "SELECT DISTINCT CONCAT(LEFT(`credential`, 10), IF(LENGTH(`credential`) > 10, REPEAT('*', LENGTH(`credential`) - 10), '')) AS `credential` FROM `sessions` WHERE `validated` = 1 AND `app` = ?", [$secret], 1, 1800);
+        $rows = misc\cache\fetch('AsAuthOnlineUsers:' . $secret, "SELECT DISTINCT CONCAT(LEFT(`credential`, 10), IF(LENGTH(`credential`) > 10, REPEAT('*', LENGTH(`credential`) - 10), '')) AS `credential` FROM `sessions` WHERE `validated` = 1 AND `app` = ?", [$secret], 1, 1800);
 
         if ($rows == "not_found") {
             $response = json_encode(array(
@@ -998,8 +998,8 @@ switch ($_POST['type'] ?? $_GET['type']) {
         $sessionid = misc\etc\sanitize($_POST['sessionid'] ?? $_GET['sessionid']);
         $session = api\shared\primary\getSession($sessionid, $secret);
         $enckey = $session["enckey"];
-    
-        $row = misc\cache\fetch('KeyAuthAppStats:' . $secret, "SELECT (SELECT COUNT(1) FROM `users` WHERE `app` = ?) AS 'numUsers', (SELECT COUNT(1) FROM `sessions` WHERE `app` = ? AND `validated` = 1 AND `expiry` > ?) AS 'numOnlineUsers', (SELECT COUNT(1) FROM `keys` WHERE `app` = ?) AS 'numKeys' FROM dual", [$secret, $secret, time(), $secret], 0, 3600);
+
+        $row = misc\cache\fetch('AsAuthAppStats:' . $secret, "SELECT (SELECT COUNT(1) FROM `users` WHERE `app` = ?) AS 'numUsers', (SELECT COUNT(1) FROM `sessions` WHERE `app` = ? AND `validated` = 1 AND `expiry` > ?) AS 'numOnlineUsers', (SELECT COUNT(1) FROM `keys` WHERE `app` = ?) AS 'numKeys' FROM dual", [$secret, $secret, time(), $secret], 0, 3600);
 
         $numUsers = $row['numUsers'];
         $numOnlineUsers = $row['numOnlineUsers'];
@@ -1017,10 +1017,10 @@ switch ($_POST['type'] ?? $_GET['type']) {
             ),
             "nonce" => misc\etc\generateRandomString(32)
         ));
-    
+
         $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
         header("signature: {$sig}");
-    
+
         die($response);
     case 'setvar':
         $sessionid = misc\etc\sanitize($_POST['sessionid'] ?? $_GET['sessionid']);
@@ -1071,7 +1071,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
             die($response);
         }
 
-        $row = misc\cache\fetch('KeyAuthUserVar:' . $secret . ':' . $var . ':' . $session["credential"], "SELECT `data`, `readOnly` FROM `uservars` WHERE `name` = ? AND `user` = ? AND `app` = ?", [$var, $session["credential"], $secret], 0);
+        $row = misc\cache\fetch('AsAuthUserVar:' . $secret . ':' . $var . ':' . $session["credential"], "SELECT `data`, `readOnly` FROM `uservars` WHERE `name` = ? AND `user` = ? AND `app` = ?", [$var, $session["credential"], $secret], 0);
 
         if ($row != "not_found") {
             $readOnly = $row["readOnly"];
@@ -1089,7 +1089,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
         $query = misc\mysql\query("REPLACE INTO `uservars` (`name`, `data`, `user`, `app`) VALUES (?, ?, ?, ?)", [$var, $data, $session["credential"], $secret]);
 
         if ($query->affected_rows != 0) {
-            misc\cache\purge('KeyAuthUserVar:' . $secret . ':' . $var . ':' . $session["credential"]);
+            misc\cache\purge('AsAuthUserVar:' . $secret . ':' . $var . ':' . $session["credential"]);
             $response = json_encode(array(
                 "success" => true,
                 "message" => "Successfully set variable",
@@ -1128,7 +1128,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
 
         $var = misc\etc\sanitize($_POST['var'] ?? $_GET['var']);
 
-        $row = misc\cache\fetch('KeyAuthUserVar:' . $secret . ':' . $var . ':' . $session["credential"], "SELECT `data`, `readOnly` FROM `uservars` WHERE `name` = ? AND `user` = ? AND `app` = ?", [$var, $session["credential"], $secret], 0);
+        $row = misc\cache\fetch('AsAuthUserVar:' . $secret . ':' . $var . ':' . $session["credential"], "SELECT `data`, `readOnly` FROM `uservars` WHERE `name` = ? AND `user` = ? AND `app` = ?", [$var, $session["credential"], $secret], 0);
 
         if ($row == "not_found") {
             $response = json_encode(array(
@@ -1161,7 +1161,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
 
         $varid = misc\etc\sanitize($_POST['varid'] ?? $_GET['varid']);
 
-        $row = misc\cache\fetch('KeyAuthVar:' . $secret . ':' . $varid, "SELECT `msg`, `authed` FROM `vars` WHERE `varid` = ? AND `app` = ?", [$varid, $secret], 0);
+        $row = misc\cache\fetch('AsAuthVar:' . $secret . ':' . $varid, "SELECT `msg`, `authed` FROM `vars` WHERE `varid` = ? AND `app` = ?", [$varid, $secret], 0);
 
         if ($row == "not_found") {
             $response = json_encode(array(
@@ -1209,7 +1209,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
         $hwid = misc\etc\sanitize($_POST['hwid'] ?? $_GET['hwid']);
         $ip = api\shared\primary\getIp();
 
-        $row = misc\cache\fetch('KeyAuthBlacklist:' . $secret . ':' . $ip . ':' . $hwid, "SELECT 1 FROM `bans` WHERE (`hwid` = ? OR `ip` = ?) AND `app` = ?", [$hwid, $ip, $secret], 0);
+        $row = misc\cache\fetch('AsAuthBlacklist:' . $secret . ':' . $ip . ':' . $hwid, "SELECT 1 FROM `bans` WHERE (`hwid` = ? OR `ip` = ?) AND `app` = ?", [$hwid, $ip, $secret], 0);
 
         if ($row != "not_found") {
             $response = json_encode(array(
@@ -1248,7 +1248,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
         }
 
         $channel = misc\etc\sanitize($_POST['channel'] ?? $_GET['channel']);
-        $rows = misc\cache\fetch('KeyAuthChatMsgs:' . $secret . ':' . $channel, "SELECT `author`, `message`, `timestamp` FROM `chatmsgs` WHERE `channel` = ? AND `app` = ?", [$channel, $secret], 1);
+        $rows = misc\cache\fetch('AsAuthChatMsgs:' . $secret . ':' . $channel, "SELECT `author`, `message`, `timestamp` FROM `chatmsgs` WHERE `channel` = ? AND `app` = ?", [$channel, $secret], 1);
 
         if ($rows == "not_found") {
             $rows = [];
@@ -1354,7 +1354,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
 
         misc\mysql\query("INSERT INTO `chatmsgs` (`author`, `message`, `timestamp`, `channel`,`app`) VALUES (?, ?, ?, ?, ?)", [$credential, $message, time(), $channel, $secret]);
         misc\mysql\query("DELETE FROM `chatmsgs` WHERE `app` = ? AND `channel` = ? AND `id` NOT IN ( SELECT `id` FROM ( SELECT `id` FROM `chatmsgs` WHERE `channel` = ? AND `app` = ? ORDER BY `id` DESC LIMIT 50) foo );", [$secret, $channel, $channel, $secret]);
-        misc\cache\purge('KeyAuthChatMsgs:' . $secret . ':' . $channel);
+        misc\cache\purge('AsAuthChatMsgs:' . $secret . ':' . $channel);
         $response = json_encode(array(
             "success" => true,
             "message" => "Successfully sent chat message",
@@ -1390,7 +1390,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
         $pcuser = misc\etc\sanitize($_POST['pcuser'] ?? $_GET['pcuser']);
 
         if (is_null($webhook)) {
-            $roleCheck = misc\cache\fetch('KeyAuthSellerCheck:' . $owner, "SELECT `role`,`expires` FROM `accounts` WHERE `username` = ?", [$owner], 0);
+            $roleCheck = misc\cache\fetch('AsAuthSellerCheck:' . $owner, "SELECT `role`,`expires` FROM `accounts` WHERE `username` = ?", [$owner], 0);
             if($roleCheck['role'] == "tester") {
                 $query = misc\mysql\query("SELECT count(*) AS 'numLogs' FROM `logs` WHERE `logapp` = ?",[$secret]);
                 $row = mysqli_fetch_array($query->result);
@@ -1399,7 +1399,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
                     die();
                 }
             }
-            
+
             misc\mysql\query("INSERT INTO `logs` (`logdate`, `logdata`, `credential`, `pcuser`,`logapp`) VALUES (?, ?, NULLIF(?, ''), NULLIF(?, ''), ?)", [$currtime, $msg, $credential, $pcuser, $secret]);
             die();
         }
@@ -1457,7 +1457,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
         $enckey = $session["enckey"];
 
         $webid = misc\etc\sanitize($_POST['webid'] ?? $_GET['webid']);
-        $row = misc\cache\fetch('KeyAuthWebhook:' . $secret . ':' . $webid, "SELECT `baselink`, `useragent`, `authed` FROM `webhooks` WHERE `webid` = ? AND `app` = ?", [$webid, $secret], 0);
+        $row = misc\cache\fetch('AsAuthWebhook:' . $secret . ':' . $webid, "SELECT `baselink`, `useragent`, `authed` FROM `webhooks` WHERE `webid` = ? AND `app` = ?", [$webid, $secret], 0);
         if ($row == "not_found") {
             $response = json_encode(array(
                 "success" => false,
@@ -1526,7 +1526,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
 
         $fileid = misc\etc\sanitize($_POST['fileid'] ?? $_GET['fileid']);
 
-        $row = misc\cache\fetch('KeyAuthFile:' . $secret . ':' . $fileid, "SELECT `name`, `url`, `authed` FROM `files` WHERE `app` = ? AND `id` = ?", [$secret, $fileid], 0);
+        $row = misc\cache\fetch('AsAuthFile:' . $secret . ':' . $fileid, "SELECT `name`, `url`, `authed` FROM `files` WHERE `app` = ? AND `id` = ?", [$secret, $fileid], 0);
 
         if ($row == "not_found") {
             $response = json_encode(array(
@@ -1634,7 +1634,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
 
         misc\mysql\query("UPDATE `users` SET `banned` = ? WHERE `username` = ? AND `app` = ?", [$reason, $credential, $secret]);
         if ($query->affected_rows != 0) {
-            misc\cache\purge('KeyAuthUser:' . $secret . ':' . $credential);
+            misc\cache\purge('AsAuthUser:' . $secret . ':' . $credential);
             $response = json_encode(array(
                 "success" => true,
                 "message" => "Successfully Banned User",
@@ -1751,7 +1751,7 @@ switch ($_POST['type'] ?? $_GET['type']) {
             list($sessionid, $code) = [misc\etc\sanitize($_POST['sessionid'] ?? $_GET['sessionid']), misc\etc\sanitize($_POST["code"] ?? $_GET["code"])];
             $session = api\shared\primary\getSession($sessionid, $secret);
             $enckey = $session["enckey"];
-    
+
             if (!$session["validated"]) {
                 $response = json_encode(array(
                     "success" => false,
@@ -1759,123 +1759,123 @@ switch ($_POST['type'] ?? $_GET['type']) {
                 ));
                 $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
                 header("signature: {$sig}");
-    
+
                 die($response);
             }
-    
-            $row = misc\cache\fetch('KeyAuthUser:' . $secret . ':' . $session["credential"], "SELECT * FROM `users` WHERE `username` = ? AND `app` = ?", [$session["credential"], $secret], 0);
-    
+
+            $row = misc\cache\fetch('AsAuthUser:' . $secret . ':' . $session["credential"], "SELECT * FROM `users` WHERE `username` = ? AND `app` = ?", [$session["credential"], $secret], 0);
+
             if ($row["2fa"]) {
-    
+
                 $response = json_encode(array(
                     "success" => false,
                     "message" => "2fa is already enabled on this account"
                 ));
-    
+
                 $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
                 header("signature: {$sig}");
-    
+
                 die($response);
-    
+
             }
-    
-            include_once '../../auth/GoogleAuthenticator.php';     
-    
+
+            include_once '../../auth/GoogleAuthenticator.php';
+
             $_2fa = new GoogleAuthenticator();
-    
+
             if (empty($code) || is_null($code)) {
-    
+
                 $secret_code = $_2fa->createSecret();
-    
-                misc\cache\insert('KeyAuthTwoFactorAuthentication:' . $session["credential"], $secret_code, 300);
-    
-                $qrcode = str_replace(urlencode("https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl="), " ", $_2fa->getQRCodeGoogleUrl($session["credential"], $secret_code, 'KeyAuth'));
-    
+
+                misc\cache\insert('AsAuthTwoFactorAuthentication:' . $session["credential"], $secret_code, 300);
+
+                $qrcode = str_replace(urlencode("https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl="), " ", $_2fa->getQRCodeGoogleUrl($session["credential"], $secret_code, 'AsAuth'));
+
                 $response = json_encode(array(
                     "success" => true,
                     "2fa" => array(
                         "secret_code" => $secret_code,
-                        "QRCode" => "otpauth://totp/" . $session["credential"] . "?secret=" . $secret_code . "&issuer=KeyAuth"
+                        "QRCode" => "otpauth://totp/" . $session["credential"] . "?secret=" . $secret_code . "&issuer=AsAuth"
                     )
                 ));
-    
+
                 $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
                 header("signature: {$sig}");
-    
+
                 die($response);
-    
+
             }
             else {
-    
-                $secret_code = misc\cache\select('KeyAuthTwoFactorAuthentication:' . $session["credential"]);
-    
+
+                $secret_code = misc\cache\select('AsAuthTwoFactorAuthentication:' . $session["credential"]);
+
                 if (!$secret_code) {
-    
+
                     $response = json_encode(array(
                         "success" => true,
                         "message" => "2fa session has expired"
                     ));
-        
+
                     $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
                     header("signature: {$sig}");
-        
+
                     die($response);
-    
+
                 }
-    
+
                 if ($_2fa->verifyCode($secret_code, $code, 2)) {
-    
+
                     misc\mysql\query("UPDATE `users` SET `2fa` = ?, `googleAuthCode` = ? WHERE `app` = ? AND `username` = ?", [1, $secret_code, $secret, $session["credential"]]);
-                    misc\cache\purge('KeyAuthUser:' . $secret . ':' . $session["credential"]);
-                    misc\cache\purge('KeyAuthTwoFactorAuthentication: ' . $session["credential"]);
-    
+                    misc\cache\purge('AsAuthUser:' . $secret . ':' . $session["credential"]);
+                    misc\cache\purge('AsAuthTwoFactorAuthentication: ' . $session["credential"]);
+
                     $response = json_encode(array(
                         "success" => true,
                         "message" => "2fa successfully activated"
                     ));
-        
+
                     $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
                     header("signature: {$sig}");
-        
+
                     die($response);
-    
+
                 }
                 else {
-    
+
                     $response = json_encode(array(
                         "success" => true,
                         "message" => "Invalid code please try again"
                     ));
-        
+
                     $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
                     header("signature: {$sig}");
-        
+
                     die($response);
-    
+
                 }
-    
+
             }
         case '2fadisable':
-    
+
             list($sessionid, $code) = [misc\etc\sanitize($_POST['sessionid'] ?? $_GET['sessionid']), misc\etc\sanitize($_POST["code"] ?? $_GET["code"])];
-    
+
             if (empty($code) || is_null($code)) {
-    
+
                 $response = json_encode(array(
                     "success" => false,
                     "message" => "Please provide the 2fa code to disable 2fa"
                 ));
-    
+
                 $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
                 header("signature: {$sig}");
-    
+
                 die($response);
-    
+
             }
-            
+
             $session = api\shared\primary\getSession($sessionid, $secret);
             $enckey = $session["enckey"];
-    
+
             if (!$session["validated"]) {
                 $response = json_encode(array(
                     "success" => false,
@@ -1883,62 +1883,62 @@ switch ($_POST['type'] ?? $_GET['type']) {
                 ));
                 $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
                 header("signature: {$sig}");
-    
+
                 die($response);
             }
-    
-            $row = misc\cache\fetch('KeyAuthUser:' . $secret . ':' . $session["credential"], "SELECT * FROM `users` WHERE `username` = ? AND `app` = ?", [$session["credential"], $secret], 0);
-    
+
+            $row = misc\cache\fetch('AsAuthUser:' . $secret . ':' . $session["credential"], "SELECT * FROM `users` WHERE `username` = ? AND `app` = ?", [$session["credential"], $secret], 0);
+
             if (!$row["2fa"]) {
-    
+
                 $response = json_encode(array(
                     "success" => false,
                     "message" => "2fa is not enabled on this account"
                 ));
-    
+
                 $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
                 header("signature: {$sig}");
-    
+
                 die($response);
-    
+
             }
-    
-            include_once '../../auth/GoogleAuthenticator.php';     
-    
+
+            include_once '../../auth/GoogleAuthenticator.php';
+
             $_2fa = new GoogleAuthenticator();
-    
+
             $secret_code = $row["googleAuthCode"];
-    
+
             if ($_2fa->verifyCode($secret_code, $code, 2)) {
-    
+
                 misc\mysql\query("UPDATE `users` SET `2fa` = ?, `googleAuthCode` = ? WHERE `app` = ? AND `username` = ?", [0, NULL, $secret, $row["username"]]);
-                misc\cache\purge('KeyAuthUser:' . $secret . ':' . $session["credential"]);
-    
+                misc\cache\purge('AsAuthUser:' . $secret . ':' . $session["credential"]);
+
                 $response = json_encode(array(
                     "success" => true,
                     "message" => "2fa successfully activated"
                 ));
-    
+
                 $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
                 header("signature: {$sig}");
-    
+
                 die($response);
-    
+
             }
             else {
-    
+
                 $response = json_encode(array(
                     "success" => true,
                     "message" => "Invalid code please try again"
                 ));
-    
+
                 $sig = !is_null($enckey) ? hash_hmac('sha256', $response, $enckey)  : 'No encryption key supplied';
                 header("signature: {$sig}");
-    
+
                 die($response);
-    
+
             }
-    
+
         default:
             die(json_encode(array(
                 "success" => false,

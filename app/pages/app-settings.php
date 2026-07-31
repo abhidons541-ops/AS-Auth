@@ -279,7 +279,7 @@ if (isset($_POST['updatesettings']))
 
     if ($query->affected_rows > 0) 
     {
-        misc\cache\purge('KeyAuthApp:' . $_SESSION["name"] . ':' . $_SESSION['ownerid']);
+        misc\cache\purge('AsAuthApp:' . $_SESSION["name"] . ':' . $_SESSION['ownerid']);
         dashboard\primary\success("Successfully set settings!");
     } 
     else 
@@ -362,7 +362,7 @@ if ($_SESSION['app']) {
             <?php require '../app/layout/breadcrumb.php'; ?>
             <h1 class="text-xl font-semibold text-white-900 sm:text-2xl">Application Settings</h1>
             <p class="text-xs text-gray-500">Control your application here. <a
-                    href="https://keyauth.readme.io/reference/app-settings-1" target="_blank"
+                    href="https://asauth.readme.io/reference/app-settings-1" target="_blank"
                     class="text-blue-600   hover:underline">Learn More</a>.</p>
             <br>
 

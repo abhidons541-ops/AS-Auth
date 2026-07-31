@@ -32,7 +32,7 @@ if (isset($_POST['exportAuditLogs'])) {
             <?php require '../app/layout/breadcrumb.php'; ?>
             <h1 class="text-xl font-semibold text-white-900 sm:text-2xl">Audit Logs</h1>
             <p class="text-xs text-gray-500">Logs from Manager and Reseller actions. <a
-                    href="https://keyauth.readme.io/reference/audit-logs" target="_blank"
+                    href="https://asauth.readme.io/reference/audit-logs" target="_blank"
                     class="text-blue-600 hover:underline">Learn More</a>.</p>
             <br>
             <div class="p-4 flex flex-col">

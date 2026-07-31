@@ -21,7 +21,7 @@ class VerifyEmail {
      * Email address for request 
      * @var string 
      */ 
-    protected $from = 'noreply@keyauth.com'; 
+    protected $from = 'noreply@asauth.com';
 
     /** 
      * The connection timeout, in seconds. 

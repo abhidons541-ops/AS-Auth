@@ -29,7 +29,7 @@ function fetch($redisKey, $sqlQuery, $args = [], $multiRowed, $expiry = null, $t
 
                 $redis->set($redisKey, serialize($data)); // save data to redis key so next time it's retrieved much quicker from cache
 
-                if(str_contains($redisKey, "keyauthsubs")) { // ensure no users can login for longer than they're supposed to
+                if(str_contains($redisKey, "asauthsubs")) { // ensure no users can login for longer than they're supposed to
                         $expiries = array();
                         foreach ($data as $row) {
                                 $expiries[] = $row['expiry'];
@@ -38,12 +38,12 @@ function fetch($redisKey, $sqlQuery, $args = [], $multiRowed, $expiry = null, $t
                         $redis->expire($redisKey, $ttl);
                 }
 
-                if(str_contains($redisKey, "keyauthsellercheck")) { // ensure no customers can use SellerAPI for longer than the period they have seller plan
+                if(str_contains($redisKey, "asauthsellercheck")) { // ensure no customers can use SellerAPI for longer than the period they have seller plan
                         $ttl = intval($data["expires"] - time());
                         $redis->expire($redisKey, $ttl);
                 }
 
-                if(str_contains($redisKey, "keyauthstate")) { // ensure no users stay logged in for longer than they're supposed to
+                if(str_contains($redisKey, "asauthstate")) { // ensure no users stay logged in for longer than they're supposed to
                         $ttl = intval($data["expiry"] - time());
                         $redis->expire($redisKey, $ttl);
                 }

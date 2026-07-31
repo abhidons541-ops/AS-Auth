@@ -85,7 +85,7 @@ if (!$_SESSION['app']) // no app selected yet
     <link href="https://cdn.keyauth.cc/v2/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
         type="text/css" />
 
-    <title>KeyAuth - Open Source Auth</title>
+    <title>AsAuth - Open Source Auth</title>
 
     <script>
     if (window.history.replaceState) {

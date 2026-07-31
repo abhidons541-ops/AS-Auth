@@ -36,7 +36,7 @@ if (isset($_POST['kill'])) {
             <?php require '../app/layout/breadcrumb.php'; ?>
             <h1 class="text-xl font-semibold text-white-900 sm:text-2xl ">Sessions</h1>
             <p class="text-xs text-gray-500">All of your active sessions. (Active Users) <a
-                    href="https://keyauth.readme.io/reference/sessions-1" target="_blank"
+                    href="https://asauth.readme.io/reference/sessions-1" target="_blank"
                     class="text-blue-600  hover:underline">Learn More</a>.</p>
             <br>
             <div class="p-4 flex flex-col">

@@ -98,7 +98,7 @@ if (isset($_POST['savesub'])) {
     } else {
         misc\mysql\query("UPDATE `subscriptions` SET `level` = ? WHERE `name` = ? AND `app` = ?", [$level, $subscription, $_SESSION['app']]);
         if ($_SESSION['role'] == "seller") {
-            misc\cache\purge('KeyAuthSubscriptions:' . $_SESSION['app']);
+            misc\cache\purge('AsAuthSubscriptions:' . $_SESSION['app']);
         }
         dashboard\primary\success("Successfully Updated Subscription!");
         echo "<meta http-equiv='Refresh' Content='2'>";
@@ -112,7 +112,7 @@ if (isset($_POST['savesub'])) {
             <?php require '../app/layout/breadcrumb.php'; ?>
             <h1 class="text-xl font-semibold text-white-900 sm:text-2xl ">Subscriptions</h1>
             <p class="text-xs text-gray-500">Subscriptions act as levels/tiers. <a
-                    href="https://keyauth.readme.io/reference/subscriptions-1" target="_blank"
+                    href="https://asauth.readme.io/reference/subscriptions-1" target="_blank"
                     class="text-blue-600  hover:underline">Learn More</a>.</p>
             <br>
             <div class="p-4 flex flex-col">

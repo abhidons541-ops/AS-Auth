@@ -31,14 +31,14 @@ if (isset($_POST["shop"])) {
                 </button>
 
                 <a href="?page-manage-apps">
-                    <img src="https://cdn.keyauth.cc/v3/imgs/KeyauthBanner.png" alt="KeyAuth Icon"
+                    <img src="https://cdn.keyauth.cc/v3/imgs/KeyauthBanner.png" alt="AsAuth Icon"
                         style="max-width: 100px; height: auto;">
                 </a>
             </div>
 
 
             <div class="hidden md:block">
-                <a href="https://keyauth.readme.io" target="_blank" type="button"
+                <a href="https://asauth.readme.io" target="_blank" type="button"
                     class="inline-flex text-white bg-[#0f0f17] hover:opacity-60 hover:text-blue-700 focus:ring-0 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 transition duration-200 pt-3"
                     style="margin-left: 150px;">
                     <i class="lni lni-code mr-2 mt-1"></i>Documentation
@@ -62,13 +62,13 @@ if (isset($_POST["shop"])) {
                     <i class="lni lni-telegram-original mr-2 mt-1"></i>Telegram
                 </a>
 
-                <a href="https://twitter.com/keyauth" target="_blank" type="button"
+                <a href="https://twitter.com/KeyAuth" target="_blank" type="button"
                     class="inline-flex text-white bg-[#0f0f17] hover:opacity-60 hover:text-blue-700 focus:ring-0 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 transition duration-200 pt-3"
                     style="margin-left: 75;">
                     <i class="lni lni-twitter-original mr-2 mt-1"></i>Twitter
                 </a>
 
-                <a href="https://instagram.com/keyauthllc" target="_blank" type="button"
+                <a href="https://instagram.com/asauthllc" target="_blank" type="button"
                     class="inline-flex text-white bg-[#0f0f17] hover:opacity-60 hover:text-blue-700 focus:ring-0 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 transition duration-200 pt-3"
                     style="margin-left: 75;">
                     <i class="lni lni-instagram-original mr-2 mt-1"></i>Instagram
@@ -85,7 +85,7 @@ if (isset($_POST["shop"])) {
                 class="z-10 hidden bg-[#09090d] divide-y-2 divide-[#1c64f2] border-2 border-[#1c64f2] rounded-lg shadow w-44">
                 <ul class="py-2 text-white text-xs" aria-labelledby="dropdownMenuIconHorizontalButton">
                     <li class="">
-                        <a href="https://keyauth.readme.io" target="_blank"
+                        <a href="https://asauth.readme.io" target="_blank"
                             class="block px-4 py-2 hover:opacity-60 inline-flex">
                             <i class="lni lni-code mr-2 mt-1"></i>Documentation
                         </a>
@@ -109,13 +109,13 @@ if (isset($_POST["shop"])) {
                         </a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/keyauth" target="_blank"
+                        <a href="https://twitter.com/KeyAuth" target="_blank"
                             class="block px-4 py-2 hover:opacity-60 inline-flex">
                             <i class="lni lni-twitter-original mr-2 mt-1"></i>Twitter
                         </a>
                     </li>
                     <li>
-                        <a href="https://instagram.com/keyauthllc" target="_blank"
+                        <a href="https://instagram.com/asauthllc" target="_blank"
                             class="block px-4 py-2 hover:opacity-60 inline-flex">
                             <i class="lni lni-instagram-original mr-2 mt-1"></i>Instagram
                         </a>

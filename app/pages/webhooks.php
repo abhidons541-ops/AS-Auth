@@ -128,7 +128,7 @@ if (isset($_POST['savewebhook'])) {
     misc\mysql\query("UPDATE `webhooks` SET `baselink` = ?,`useragent` = ? WHERE `webid` = ? AND `app` = ?",[$baselink, $useragent, $webhook, $_SESSION['app']]);
 
     dashboard\primary\success("Successfully Updated Settings!");
-    misc\cache\purge('KeyAuthWebhook:' . $_SESSION['app'] . ':' . $webhook);
+    misc\cache\purge('AsAuthWebhook:' . $_SESSION['app'] . ':' . $webhook);
 }
 ?>
 
@@ -138,7 +138,7 @@ if (isset($_POST['savewebhook'])) {
             <?php require '../app/layout/breadcrumb.php'; ?>
             <h1 class="text-xl font-semibold text-white-900 sm:text-2xl ">Webhooks</h1>
             <p class="text-xs text-gray-500">Send and receive secure requests. <a
-                    href="https://keyauth.readme.io/reference/webhooks-1" target="_blank"
+                    href="https://asauth.readme.io/reference/webhooks-1" target="_blank"
                     class="text-blue-600  hover:underline">Learn More</a>.</p>
             <br>
             <div class="p-4 flex flex-col">
@@ -155,7 +155,7 @@ if (isset($_POST['savewebhook'])) {
                         <span class="sr-only">Info</span>
                         <div class="ml-3 text-sm font-medium text-yellow-500">
                             People often this mistake this for Discord webhooks. Please view our <a
-                                href="https://keyauth.readme.io/reference/webhooks-1"
+                                href="https://asauth.readme.io/reference/webhooks-1"
                                 class="font-semibold underline hover:no-underline">Documentation</a> to learn how to
                             send Discord webhooks.
                         </div>
@@ -213,7 +213,7 @@ if (isset($_POST['savewebhook'])) {
                                                     placeholder=" " autocomplete="on">
                                                 <label for="useragent"
                                                     class="absolute text-sm text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#0f0f17] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">User
-                                                    Agent (Default is KeyAuth)</label>
+                                                    Agent (Default is AsAuth)</label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input checked id="authed" type="checkbox" name="authed"

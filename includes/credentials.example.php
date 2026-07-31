@@ -19,15 +19,15 @@ $logwebhook = ""; // discord webhook which receives login logs and keys created
 
 $adminwebhook = ""; // discord webhook which receives admin actions
 
-$redisServers = []; // URLs to purge redis keys from each server (used on live KeyAuth website only)
+$redisServers = []; // URLs to purge redis keys from each server (used on live AsAuth website only)
 
 $redisPass = "";
 
-$keyauthStatsToken = ""; // discord bot token for KeyAuth Stats
+$asauthStatsToken = ""; // discord bot token for AsAuth Stats
 
-$webhookun = "KeyAuth Logs"; // webhook username
+$webhookun = "AsAuth Logs"; // webhook username
 
-$adminwebhookun = "KeyAuth Admin Logs"; // admin webhook's username
+$adminwebhookun = "AsAuth Admin Logs"; // admin webhook's username
 
 $awsAccessKey = ""; // used for AWS SES to send emails
 

@@ -61,7 +61,7 @@ try {
 
     // new Instance of the server library.
     // make sure that $rpId is the domain name.
-    $WebAuthn = new lbuchs\WebAuthn\WebAuthn('KeyAuth', $rpId, $formats);
+    $WebAuthn = new lbuchs\WebAuthn\WebAuthn('AsAuth', $rpId, $formats);
 
     // ------------------------------------
     // request for create arguments

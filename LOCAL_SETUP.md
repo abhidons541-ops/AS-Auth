@@ -1,4 +1,4 @@
-# Local Setup Guide for KeyAuth Source Code
+# Local Setup Guide for AsAuth Source Code
 
 This guide provides instructions on how to set up and run this project locally on your development machine.
 

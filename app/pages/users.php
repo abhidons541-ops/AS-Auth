@@ -28,7 +28,7 @@ if (isset($_POST['saveuser'])) {
         $query = misc\mysql\query("UPDATE `users` SET `hwid` = ? WHERE `username` = ? AND `app` = ?", [$oldHwid, $un, $_SESSION['app']]);
         if ($query->affected_rows) {
             dashboard\primary\success("Successfully updated user!");
-            misc\cache\purge('KeyAuthUser:' . $_SESSION['app'] . ':' . $un);
+            misc\cache\purge('AsAuthUser:' . $_SESSION['app'] . ':' . $un);
         } else {
             dashboard\primary\error("Failed to update user!");
         }
@@ -439,7 +439,7 @@ if (isset($_POST['edituser'])) {
             <?php require '../app/layout/breadcrumb.php'; ?>
             <h1 class="text-xl font-semibold text-white-900 sm:text-2xl ">Users</h1>
             <p class="text-xs text-gray-500">After someone registers for your app with a license, they will appear here.
-                <a href="https://keyauth.readme.io/reference/users-1" target="_blank"
+                <a href="https://asauth.readme.io/reference/users-1" target="_blank"
                     class="text-blue-600  hover:underline">Learn More</a>.
             </p>
             <br>
@@ -539,7 +539,7 @@ if (isset($_POST['edituser'])) {
                                                     type="button" data-drawer-target="drawer-right-example"
                                                     data-drawer-show="drawer-right-example"
                                                     data-drawer-placement="right" aria-controls="drawer-right-example">
-                                                    Use KeyAuth Password Generator
+                                                    Use AsAuth Password Generator
                                                 </button>
                                             </div>
 
@@ -582,7 +582,7 @@ if (isset($_POST['edituser'])) {
                                                 tabindex="-1" aria-labelledby="drawer-right-label">
                                                 <h5 id="drawer-right-label"
                                                     class="inline-flex items-center mb-4 text-base font-semibold text-white-500">
-                                                    KeyAuth Password Generator</h5>
+                                                    AsAuth Password Generator</h5>
                                                 <button type="button" data-drawer-hide="drawer-right-example"
                                                     aria-controls="drawer-right-example"
                                                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 right-2.5 inline-flex items-center justify-center">

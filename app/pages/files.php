@@ -162,7 +162,7 @@ if (isset($_POST['savefile'])) {
     $query = misc\mysql\query("UPDATE `files` SET `name` = ?,`size` = ?,`url` = ?, `uploaddate` = ?, `authed` = ? WHERE `app` = ? AND `id` = ?", [$fn, $fs, $url, time(), $authed, $_SESSION['app'], $fileid]);
 
     if ($query->affected_rows != 0) {
-        misc\cache\purge('KeyAuthFile:' . ($secret ?? $_SESSION['app']) . ':' . $fileid);
+        misc\cache\purge('AsAuthFile:' . ($secret ?? $_SESSION['app']) . ':' . $fileid);
         dashboard\primary\success("Successfully Updated File!");
     } else {
         dashboard\primary\error("Failed to update file");
@@ -176,7 +176,7 @@ if (isset($_POST['savefile'])) {
             <?php require '../app/layout/breadcrumb.php'; ?>
             <h1 class="text-xl font-semibold text-white-900 sm:text-2xl ">Files</h1>
             <p class="text-xs text-gray-500">Let your users download files you upload here. <a
-                    href="https://keyauth.readme.io/reference/files-1" target="_blank"
+                    href="https://asauth.readme.io/reference/files-1" target="_blank"
                     class="text-blue-600  hover:underline">Learn More</a>.</p>
             <br>
             <div class="p-4 flex flex-col">
@@ -192,7 +192,7 @@ if (isset($_POST['savefile'])) {
                         <span class="sr-only">Info</span>
                         <div class="ml-3 text-sm font-medium text-yellow-500">
                             Files not working? Make sure you're using a direct download link. View our <a
-                                href="https://keyauth.readme.io/reference/files-1"
+                                href="https://asauth.readme.io/reference/files-1"
                                 class="font-semibold underline hover:no-underline">Documentation</a> to learn how to
                             learn more.
                         </div>

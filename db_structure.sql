@@ -348,7 +348,7 @@ CREATE TABLE `webhooks` (
   `id` int NOT NULL,
   `webid` varchar(10) NOT NULL,
   `baselink` varchar(200) NOT NULL,
-  `useragent` varchar(49) NOT NULL DEFAULT 'KeyAuth',
+  `useragent` varchar(49) NOT NULL DEFAULT 'AsAuth',
   `app` varchar(64) NOT NULL,
   `authed` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;

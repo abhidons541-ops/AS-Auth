@@ -123,7 +123,7 @@ if (isset($_POST['savevar'])) {
     $resp = misc\variable\edit($_POST['variable'], $_POST['msg'], $authed);
     switch ($resp) {
         case 'success':
-            misc\cache\purge('KeyAuthVar:' . $_SESSION['app'] . ':' . $_POST['variable']);
+            misc\cache\purge('AsAuthVar:' . $_SESSION['app'] . ':' . $_POST['variable']);
             dashboard\primary\success("Successfully edited variable!");
             break;
     }
@@ -142,7 +142,7 @@ if (isset($_POST['savevar'])) {
             <?php require '../app/layout/breadcrumb.php'; ?>
             <h1 class="text-xl font-semibold text-white-900 sm:text-2xl ">Global Variables</h1>
             <p class="text-xs text-gray-500">Pass, assign, obtain data globally. <a
-                    href="https://keyauth.readme.io/reference/variables-1" target="_blank"
+                    href="https://asauth.readme.io/reference/variables-1" target="_blank"
                     class="text-blue-600  hover:underline">Learn More</a>.</p>
             <br>
             <div class="overflow-x-auto">
@@ -158,7 +158,7 @@ if (isset($_POST['savevar'])) {
                     <span class="sr-only">Info</span>
                     <div class="ml-3 text-sm font-medium text-yellow-500">
                         These are global variables. You must use 'var()', not get/setvar()(aka user variables). Please
-                        view our <a href="https://keyauth.readme.io/reference/variables-1"
+                        view our <a href="https://asauth.readme.io/reference/variables-1"
                             class="font-semibold underline hover:no-underline">Documentation</a> to learn how to use
                         global variables.
                     </div>

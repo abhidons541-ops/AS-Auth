@@ -36,37 +36,37 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="title" content="KeyAuth - Open Source Auth">
+    <meta name="title" content="AsAuth - Open Source Auth">
 
     <meta content="Secure your software against piracy, an issue causing $422 million in losses annually - Fair pricing & Features not seen in competitors" name="description" />
-    <meta content="KeyAuth" name="author" />
+    <meta content="AsAuth" name="author" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="KeyAuth, Cloud Authentication, Key Authentication,Authentication, API authentication,Security, Encryption authentication, Authenticated encryption, Cybersecurity, Developer, SaaS, Software Licensing, Licensing" />
+    <meta name="keywords" content="AsAuth, Cloud Authentication, Key Authentication,Authentication, API authentication,Security, Encryption authentication, Authenticated encryption, Cybersecurity, Developer, SaaS, Software Licensing, Licensing" />
     <meta property="og:description" content="Secure your software against piracy, an issue causing $422 million in losses annually - Fair pricing & Features not seen in competitors" />
     <meta property="og:image" content="https://cdn.keyauth.cc/front/assets/img/favicon.png" />
-    <meta property="og:site_name" content="KeyAuth | Secure your software from piracy." />
+    <meta property="og:site_name" content="AsAuth | Secure your software from piracy." />
     <link rel="shortcut icon" type="image/jpg" href="https://cdn.keyauth.cc/front/assets/img/favicon.png">
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="KeyAuth - Open Source Auth">
+    <meta itemprop="name" content="AsAuth - Open Source Auth">
     <meta itemprop="description" content="Secure your software against piracy, an issue causing $422 million in losses annually - Fair pricing & Features not seen in competitors">
     <meta itemprop="image" content="https://cdn.keyauth.cc/front/assets/img/favicon.png">
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="product">
-    <meta name="twitter:site" content="@keyauth">
-    <meta name="twitter:title" content="KeyAuth - Open Source Auth">
+    <meta name="twitter:site" content="@asauth">
+    <meta name="twitter:title" content="AsAuth - Open Source Auth">
 
     <meta name="twitter:description" content="Secure your software against piracy, an issue causing $422 million in losses annually - Fair pricing & Features not seen in competitors">
-    <meta name="twitter:creator" content="@keyauth">
+    <meta name="twitter:creator" content="@asauth">
     <meta name="twitter:image" content="https://cdn.keyauth.cc/front/assets/img/favicon.png">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="KeyAuth - Open Source Auth" />
+    <meta property="og:title" content="AsAuth - Open Source Auth" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="./" />
 
-    <title>KeyAuth - Login</title>
+    <title>AsAuth - Login</title>
 
     <!-- Canonical SEO -->
     <link rel="canonical" href="https://keyauth.cc" />
@@ -81,7 +81,7 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
         <nav class="border-gray-200 px-4 lg:px-6 py-2.5 mb-14">
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <a href="../" class="flex items-center">
-                    <img src="https://cdn.keyauth.cc/v2/assets/media/logos/logo-1-dark.png" class="mr-3 h-12 mt-2" alt="KeyAuth Logo" />
+                    <img src="https://cdn.keyauth.cc/v2/assets/media/logos/logo-1-dark.png" class="mr-3 h-12 mt-2" alt="AsAuth Logo" />
                 </a>
                 <div class="flex items-center lg:order-2">
                     <a href="../login" class="text-white focus:ring-0 font-medium rounded-lg text-sm px-4 py-2 lg:px-5 lg:py-2.5 mr-2 hover:opacity-60 transition duration-200 focus:outline-none focus:ring-gray-800">
@@ -129,7 +129,7 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
             <div class="w-full md:w-1/2 md:p-8">
                 <div class="md:max-w-lg md:mx-auto md:pt-36">
                     <h2 class="mb-7 md:mb-12 text-3xl md:text-6xl font-bold font-heading tracking-px-n leading-tight text-center">
-                        Welcome back to <span class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400 inline-block">KeyAuth</span>
+                        Welcome back to <span class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400 inline-block">AsAuth</span>
                         👋
                     </h2>
 
@@ -159,8 +159,8 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
                             </script>
 
                             <div class="relative mb-4" data-twofactor="1">
-                                <input type="text" id="keyauthtwofactor" name="keyauthtwofactor" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-border-gray-300 appearance-none focus:ring-0  peer" placeholder=" " autocomplete="on">
-                                <label for="keyauthtwofactor" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#09090d] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">2FA
+                                <input type="text" id="asauthtwofactor" name="asauthtwofactor" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-border-gray-300 appearance-none focus:ring-0  peer" placeholder=" " autocomplete="on">
+                                <label for="asauthtwofactor" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#09090d] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">2FA
                                     <span class="text-xs">(Two Factor Authentication)</span></label>
                             </div>
 
@@ -186,8 +186,8 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
                             </div>
 
                             <div class="relative mb-4" data-twofactor="1">
-                                <input type="text" id="keyauthtwofactor" name="keyauthtwofactor" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-border-gray-300 appearance-none focus:ring-0  peer" placeholder=" " autocomplete="on">
-                                <label for="keyauthtwofactor" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#09090d] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">2FA
+                                <input type="text" id="asauthtwofactor" name="asauthtwofactor" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-border-gray-300 appearance-none focus:ring-0  peer" placeholder=" " autocomplete="on">
+                                <label for="asauthtwofactor" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#09090d] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">2FA
                                     <span class="text-xs">(Two Factor Authentication)</span></label>
                             </div>
 
@@ -222,10 +222,10 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
             <div class="grid grid-cols-2 gap-8 lg:grid-cols-6">
                 <div class="col-span-2">
                     <a href="../" class="flex items-center mb-2 text-2xl font-semibold text-white lg:mb-0">
-                        KeyAuth LLC
+                        AsAuth LLC
                     </a>
                     <p class="my-4 font-light text-gray-400">
-                        KeyAuth is a game-changing, affordable and easy to use licensing solution for your software.
+                        AsAuth is a game-changing, affordable and easy to use licensing solution for your software.
                     </p>
                     <ul class="flex mt-5 space-x-6">
                         <li>
@@ -237,7 +237,7 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
                             </a>
                         </li>
                         <li>
-                            <a target="_blank" href="https://github.com/KeyAuth/" class="hover:text-white text-gray-400">
+                            <a target="_blank" href="https://github.com/keyauth/" class="hover:text-white text-gray-400">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M12.026 2a9.973 9.973 0 0 0-9.974 9.974c0 4.406 2.857 8.145 6.82 9.465.5.09.68-.217.68-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.09-.645.35-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.555 9.555 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2Z" clip-rule="evenodd"></path>
                                 </svg>
@@ -263,7 +263,7 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
                             </a>
                         </li>
                         <li>
-                            <a target="_blank" href="https://www.tiktok.com/@keyauth" class="hover:text-white text-gray-400">
+                            <a target="_blank" href="https://www.tiktok.com/@asauth" class="hover:text-white text-gray-400">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1h-.04Z">
                                     </path>
@@ -285,7 +285,7 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
                             <a href="https://github.com/keyauth" target="_blank" class="hover:underline">GitHub</a>
                         </li>
                         <li class="mb-4">
-                            <a href="https://keyauth.readme.io" target="_blank" class="hover:underline">Documentation</a>
+                            <a href="https://asauth.readme.io" target="_blank" class="hover:underline">Documentation</a>
                         </li>
                     </ul>
                 </div>
@@ -295,18 +295,18 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
                     </h2>
                     <ul class="text-gray-500 ">
                         <li class="mb-4">
-                            <a target="_blank" href="https://github.com/KeyAuth/KeyAuth-CPP-Example" class="hover:underline">
+                            <a target="_blank" href="https://github.com/keyauth/AsAuth-CPP-Example" class="hover:underline">
                                 C++ <span class="text-xs">(CPP)</span>
                             </a>
                         </li>
                         <li class="mb-4">
-                            <a target="_blank" href="https://github.com/KeyAuth/KeyAuth-CSHARP-Example" class="hover:underline">C# <span class="text-xs">(CSharp)</span></a>
+                            <a target="_blank" href="https://github.com/keyauth/AsAuth-CSHARP-Example" class="hover:underline">C# <span class="text-xs">(CSharp)</span></a>
                         </li>
                         <li class="mb-4">
-                            <a target="_blank" href="https://github.com/mazkdevf/KeyAuth-JS-Example" class="hover:underline">JavaScript <span class="text-xs">(JS)</span></a>
+                            <a target="_blank" href="https://github.com/mazkdevf/AsAuth-JS-Example" class="hover:underline">JavaScript <span class="text-xs">(JS)</span></a>
                         </li>
                         <li class="mb-4">
-                            <a target="_blank" href="https://github.com/KeyAuth/KeyAuth-Python-Example" class="hover:underline">Python <span class="text-xs">(PY)</span></a>
+                            <a target="_blank" href="https://github.com/keyauth/AsAuth-Python-Example" class="hover:underline">Python <span class="text-xs">(PY)</span></a>
                         </li>
                     </ul>
                 </div>
@@ -340,7 +340,7 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
                             <a target="_blank" href="../terms#privacy" class="hover:underline">Privacy Policy</a>
                         </li>
                         <li class="mb-4">
-                            <a target="_blank" href="https://github.com/KeyAuth/KeyAuth-Source-Code/blob/main/LICENSE" class="hover:underline">Licensing</a>
+                            <a target="_blank" href="https://github.com/keyauth/AsAuth-Source-Code/blob/main/LICENSE" class="hover:underline">Licensing</a>
                         </li>
                         <li class="mb-4">
                             <a target="_blank" href="../gdpr" class="hover:underline">GDPR</a>
@@ -350,7 +350,7 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
             </div>
             <hr class="my-6 border-[#0f0f17] sm:mx-auto lg:my-8">
 
-            <span class="block mb-6 text-sm text-gray-400 lg:mb-0 text-center">© 2020 - 2023 <a href="../" class="hover:underline">KeyAuth LLC</a>. All Rights Reserved.
+            <span class="block mb-6 text-sm text-gray-400 lg:mb-0 text-center">© 2020 - 2023 <a href="../" class="hover:underline">AsAuth LLC</a>. All Rights Reserved.
             </span>
         </div>
     </footer>
@@ -404,25 +404,25 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
             dashboard\primary\error("Password is invalid!");
             return;
         }
-        
+
         if ($locked) {
             header("location: ./accShare/");
             die();
         }
-        
+
         if (misc\etc\isBreached($password)) {
             dashboard\primary\wh_log($logwebhook, "{$username} attempted to login with leaked password `{$password}`", $webhookun);
             dashboard\primary\error("Password has been leaked in a data breach (not from us)! You must click Forgot Password and change password.");
             return;
         }
-        
+
         $ip = api\shared\primary\getIp();
-        
+
         /*
         * Email verification
         * For paid customers, checks if ISP and region (aka state) match. If not, they must verify it's them via an email.
         * Customers can opt to disable email verification.
-        * This code is also used to notify the KeyAuth owner of account sharing, since that's against our ToS.
+        * This code is also used to notify the AsAuth owner of account sharing, since that's against our ToS.
         */
         if (in_array($role, array("developer", "seller")) && $username != "demoseller" && $username != "demodeveloper" && !empty($awsAccessKey)) {
             $url = "http://ip-api.com/json/{$ip}?fields=16910340"; // returns fields: region,as,proxy,hosting
@@ -433,7 +433,7 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
 
             $resp = curl_exec($curl);
             $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-            
+
             if($httpcode == 429) {
                 dashboard\primary\wh_log($logwebhook, "<@1138519014734319706> IP checking is rate limited", $webhookun);
                 dashboard\primary\error("Login location is rate-limited! Please try again in a minute or so.");
@@ -445,32 +445,32 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
                 $asNum = explode(" ", $json["as"])[0];
                 if (!is_null($asNumSaved)) {
                     if ($asNum != $asNumSaved || $region != $regionSaved) {
-                        // if user not using VPN and IP location changed, notify KeyAuth owner of account sharing
+                        // if user not using VPN and IP location changed, notify AsAuth owner of account sharing
                         if(!$json->proxy && !$json->hosting && $region != $regionSaved) {
                             dashboard\primary\wh_log($logwebhook, "user `{$username}` detected account sharing **IP Address:** `{$ip}` **Old AS:** {$asNumSaved} **New AS:** {$asNum} **Old Region:** {$regionSaved} **New Region:** {$region}", $webhookun);
                             if(!$emailVerify) {
                                 misc\mysql\query("UPDATE `accounts` SET `region` = ?,`asNum` = ?,`lastip` = ? WHERE `username` = ?",[$region, $asNum, $ip, $username]);
                             }
                         }
-                        
+
                         if($emailVerify) { // only require email verification if enabled.
                             if ($twofactor_optional) {
                                 // 2FA verification on new login location
-                                $twofactor = misc\etc\sanitize($_POST['keyauthtwofactor']);
+                                $twofactor = misc\etc\sanitize($_POST['asauthtwofactor']);
                                 if (empty($twofactor)) {
                                     dashboard\primary\error("Please enter 2FA code!");
                                     return;
                                 }
-        
+
                                 require_once '../auth/GoogleAuthenticator.php';
                                 $gauth = new GoogleAuthenticator();
                                 $checkResult = $gauth->verifyCode($google_Code, $twofactor, 2);
-        
+
                                 if (!$checkResult) {
                                     dashboard\primary\error("Invalid 2FA code! Make sure your device time settings are synced.");
                                     return;
                                 }
-                                
+
                                 misc\mysql\query("UPDATE `accounts` SET `region` = ?,`asNum` = ?,`lastip` = ? WHERE `username` = ?",[$region, $asNum, $ip, $username]);
                             } else {
                                 // email verification on new login location
@@ -485,11 +485,11 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
                 }
             }
         }
-        
+
         if((!$emailVerify || $role == "tester") && $twofactor_optional) {
             require_once '../auth/GoogleAuthenticator.php';
             $gauth = new GoogleAuthenticator();
-            $twofactor = misc\etc\sanitize($_POST['keyauthtwofactor']);
+            $twofactor = misc\etc\sanitize($_POST['asauthtwofactor']);
             $checkResult = $gauth->verifyCode($google_Code, $twofactor, 2);
 
             if (!$checkResult) {
@@ -503,7 +503,7 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
         $_SESSION['role'] = $role;
         $_SESSION['logindate'] = time();
         $_SESSION['img'] = $img;
-        
+
         if($securityKey) {
             // set a temporary session variable to be used until the user completes WebAuthn
             unset($_SESSION['username']);
@@ -526,7 +526,7 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
             $_SESSION['name'] = $app;
             $_SESSION['ownerid'] = $ownerid;
         }
-        
+
         if ($acclogs) // check if account logs enabled
         {
             $ua = misc\etc\sanitize($_SERVER['HTTP_USER_AGENT']);
@@ -534,9 +534,9 @@ $istwofa = $_SESSION["temp_istwofamode"] ? true : false;
             $ts = time() - 604800;
             misc\mysql\query("DELETE FROM `acclogs` WHERE `username` = ? AND `date` < ?",[$username, $ts]); // delete any account logs more than a week old
         }
-        
+
         if(strtolower($username) != "itsnetworking") {
-            dashboard\primary\wh_log($logwebhook, "{$username} has logged into KeyAuth with IP `{$ip}`", $webhookun);
+            dashboard\primary\wh_log($logwebhook, "{$username} has logged into AsAuth with IP `{$ip}`", $webhookun);
         }
 
         if ($role == "Reseller") {

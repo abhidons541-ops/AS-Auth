@@ -1,3 +1,3 @@
 <?php
-header("Location: https://keyauth.readme.io/");
+header("Location: https://asauth.readme.io/");
 exit();

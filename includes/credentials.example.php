@@ -7,10 +7,10 @@ NOTE: change this file name from credentials.example.php to credentials.php
 
 error_reporting(0);
 
-$databaseHost = "localhost";
-$databaseUsername = "root";
-$databasePassword = "";
-$databaseName = "main";
+$databaseHost = getenv('DB_HOST') ?: "localhost";
+$databaseUsername = getenv('DB_USER') ?: "root";
+$databasePassword = getenv('DB_PASSWORD') !== false ? getenv('DB_PASSWORD') : "";
+$databaseName = getenv('DB_NAME') ?: "main";
 
 $mysqlRequireSSL = false; // in case the MySQL server requires SSL
 

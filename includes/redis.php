@@ -6,7 +6,8 @@ if (!class_exists('Redis')) {
 }
 
 $redis = new Redis();
-$redis->connect('127.0.0.1', 6379);
+$redisHost = getenv('REDIS_HOST') ?: '127.0.0.1';
+$redis->connect($redisHost, 6379);
 
 global $redisPass;
 
